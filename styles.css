@@ -1,0 +1,457 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#desktop {
+    height: calc(100% - 40px);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#icons {
+    display:flex;
+    flex-direction: column;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 19px;
+    padding: 20px;
+    position:relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    width: 80px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon i {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.icon span {
+    font-size: 12px;
+    text-align: center;
+}
+
+.window {
+    position: absolute;
+    background-color: #2a2a3a;
+    border: 1px solid #3a3a4a;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-width: 300px;
+    min-height: 200px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.window-header {
+    background-color: #3a3a50;
+    color: white;
+    padding: 5px 10px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.window-controls button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+.window-controls button:hover {
+    color: #ff5555;
+}
+
+.window-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.window-control {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.window-minimize {
+    background-color: #f1c40f;
+}
+
+.window-close {
+    background-color: #e74c3c;
+}
+
+.window-content {
+    padding: 10px;
+    height: calc(100% - 30px);
+    overflow-y: auto;
+}
+
+.resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    cursor: se-resize;
+}
+
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background-color: rgba(42, 42, 58, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+#start-menu-button {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-menu-button:hover {
+    background-color: #4a4a5a;
+}
+
+#search-bar {
+    display:flex;
+    align-items: center;
+    background-color: #3a3a4a;
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin: 0 10px;
+}
+
+#search-bar input {
+    background: none;
+    border: none;
+    color: #ffffff;
+    outline: none;
+    width: 200px;
+}
+
+#search-bar i {
+    color: #ffffff;
+    margin-left: 5px;
+}
+
+#taskbar-icons {
+    display: flex;
+}
+
+.taskbar-item {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskbar-item:hover {
+    background-color: #4a4a5a;
+}
+
+.taskbar-item:hover, .taskbar-item.active {
+    background-color: rgba(58, 58, 80, 0.8);
+}
+
+.taskbar-item i {
+    font-size: 16px;
+}
+
+#system-tray {
+    display: flex;
+    align-items: center;
+}
+
+#system-tray > * {
+    margin-left: 10px;
+}
+
+#clock {
+    font-size: 14px;
+}
+
+#start-menu {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 300px;
+    background-color: rgba(42, 42, 58, 0.95);
+    border-top-right-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#start-menu.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#start-menu-search {
+    margin-bottom: 10px;
+}
+
+#start-menu-search input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    background-color: #3a3a4a;
+    color: #ffffff;
+}
+
+#start-menu-apps {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#start-menu-power {
+    display: flex;
+    justify-content: space-between;
+}
+
+#start-menu-power button {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-menu-power button:hover {
+    background-color: #4a4a5a;
+}
+
+#calendar-widget {
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    width: 300px;
+    background-color: rgba(42, 42, 58, 0.95);
+    border-top-left-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#calendar-widget.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#calendar-header button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#calendar-table th,
+#calendar-table td {
+    text-align: center;
+    padding: 5px;
+}
+
+#calendar-table td {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#calendar-table td:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.calculator-grid button {
+    padding: 10px;
+    font-size: 18px;
+    background-color: #3a3a4a;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.calculator-grid button:hover {
+    background-color: #4a4a5a;
+}
+
+.text-editor textarea {
+    width: 100%;
+    height: 100%;
+    background-color: #2a2a3a;
+    color: #ffffff;
+    border: none;
+    resize: none;
+    padding: 10px;
+}
+
+.music-player audio {
+    width: 100%;
+}
+
+.file-explorer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.file-explorer-item {.file-explorer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.file-explorer-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.file-explorer-item i {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.image-viewer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.video-player video {
+    width: 100%;
+    height: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #icons {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+        top: auto;
+        bottom: 50px;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .icon {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .icon i {
+        font-size: 24px;
+    }
+
+    .icon span {
+        font-size: 10px;
+    }
+
+    .window {
+        width: 90vw !important;
+        height: 80vh !important;
+        left: 5vw !important;
+        top: 10vh !important;
+    }
+
+    #search-bar {
+        display: none;
+    }
+
+    #start-menu,
+    #calendar-widget {
+        width: 100%;
+    }
+}
