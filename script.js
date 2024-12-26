@@ -342,23 +342,6 @@ Looking ahead, I aim to contribute to Big Tech, space organizations, or perhaps 
         </div>
     `;
 
-    const musicPlayerContent = `
-        <div class="music-player">
-            <audio id="audio-player" controls>
-                <source src="/American Authors - Hit It (Audio).mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            <div id="playlist">
-                <h3>Playlist</h3>
-                <ul>
-                    <li data-src="/srcs/John Newman - Love Me Again.mp3">Love Me Again</li>
-                    <li data-src="/srcs/Dominic Fike - Phone Numbers (Official Audio).mp3">Phone Numbers</li>
-                    <li data-src="/srcs/American Authors - Hit It (Audio).mp3">Hit It</li>
-                </ul>
-            </div>
-        </div>
-    `;
-
 
     const snakeGameContent = `
         <div id="snake-game-container">
@@ -382,18 +365,14 @@ Looking ahead, I aim to contribute to Big Tech, space organizations, or perhaps 
     const achievementsContent = `
     <h2>Gaming</h2>
     <div class="achievement">
-        <img src="/srcs/codm.png" alt="Achievement 1">
         <h3>CODM E-Sports Professional</h3>
         <p>I’ve been a passionate gamer since 2018, starting during the beta release of CODM. Over the years, I’ve honed my skills, reaching the Legendary rank multiple times and securing a spot in the global leaderboard’s Top 100 for three consecutive seasons. Competing at a Tier 1 level, I’ve participated in high-stakes tournaments, facing off against notable YouTubers and renowned players. These experiences have shaped my strategic mindset and resilience, both in gaming and beyond.</p>
     </div>
     <div class="achievement">
-        <img src="/srcs/predator-rank.png" alt="Achievement 2">
         <h3>Achieving Learderboard in Apex Legends</h3>
         <p>What began as a casual pursuit quickly turned into a competitive passion. Starting from humble beginnings, I climbed the ranks to secure a spot on the global leaderboard, reaching the Top 750. This journey reflects my adaptability, and love for gaming, pushing me to continuously improve.</p>
     </div>
     <div class="achievement">
-        <img src="/srcs/maxresdefault-removebg-preview.png" alt="Achievement 3">
-        <img src="/srcs/maxresdefault__1_-removebg-preview.png" alt="Achievement 3">
         <h3>Valorant, Counter-Strike & Warzone</h3>
         <p>As a casual gamer, I’ve enjoyed exploring titles like Valorant, Counter Strike, and Warzone. In Valorant, I reached my peak rank of Ascendant 3. In Warzone, I achieved Crimson rank.</p>
     </div>
@@ -475,8 +454,6 @@ Looking ahead, I aim to contribute to Big Tech, space organizations, or perhaps 
                 return calculatorContent;
             case 'text-editor':
                 return textEditorContent;
-            case 'music-player':
-                return musicPlayerContent;
             case 'snake-game':
                 return snakeGameContent;
             case 'tetris':
@@ -525,9 +502,6 @@ Looking ahead, I aim to contribute to Big Tech, space organizations, or perhaps 
                 break;
             case 'text-editor':
                 initializeTextEditor(windowElement);
-                break;
-            case 'music-player':
-                initializeMusicPlayer(windowElement);
                 break;
             case 'snake-game':
                 initializeSnakeGame(windowElement);
@@ -749,18 +723,6 @@ Looking ahead, I aim to contribute to Big Tech, space organizations, or perhaps 
         });
 
         textArea.parentElement.append(saveButton, loadButton);
-    }
-
-    function initializeMusicPlayer(windowElement) {
-        const audioPlayer = windowElement.querySelector('#audio-player');
-        const playlist = windowElement.querySelector('#playlist');
-
-        playlist.addEventListener('click', (e) => {
-            if (e.target.tagName === 'LI') {
-                audioPlayer.src = e.target.dataset.src;
-                audioPlayer.play();
-            }
-        });
     }
 
     function initializeSnakeGame(windowElement) {
