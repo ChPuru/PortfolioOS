@@ -1,0 +1,1231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    font-size: 16px;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Theme 1 */
+body.theme1 {
+    background-image: url('vqwen/360_F_556561593_Ey1WecTaQ6bSa7C5eP3AdmxYv2UksmB6.jpg');
+    color: #ffffff;
+}
+
+/* Theme 2 */
+body.theme2 {
+    background-image: url('vqwen/1066821.jpg');
+    color: #000000;
+}
+
+/* Theme 3 */
+body.theme3 {
+    background-image: url('vqwen/wp5524421.png');
+    color: #ffffff;
+}
+
+
+#desktop {
+    height: calc(100% - 40px);
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    overflow:hidden;
+}
+
+#icons {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(80px, 1fr)); /* Ensures vertical arrangement */
+    grid-auto-flow: column; /* Items are filled column-first */
+    gap: 20px; /* Adjusts spacing between icons */
+    grid-gap: 10px; /* Smaller gap for tighter columns */
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Allows scrolling if the content overflows */
+    justify-content: start; /* Align columns to the left like in desktops */
+    align-content: start; /* Align rows to the top */
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon i {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.icon span {
+    font-size: 14px;
+    text-align: center;
+}
+
+.window {
+    position: absolute;
+    background-color: #2a2a3a;
+    border: 1px solid #3a3a4a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-width: 300px;
+    min-height: 200px;
+    z-index: 100;
+    transition: box-shadow 0.3s;
+}
+
+.window:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.window-header {
+    background-color: #3a3a50;
+    color: white;
+    padding: 10px 15px;
+    cursor: move;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.window-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.window-controls button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+.window-controls button:hover {
+    color: #ff5555;
+}
+
+.window-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.window-control {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.window-minimize {
+    background-color: #f1c40f;
+}
+
+.window-close {
+    background-color: #e74c3c;
+}
+
+.window-content {
+    padding: 15px;
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+
+.resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    cursor: se-resize;
+    background-color: #3a3a4a;
+    border-radius: 2px;
+}
+
+.window.minimized {
+    display: none; /* Hide the window */
+}
+.taskbar-item.minimized {
+    opacity: 0.5; /* Indicate minimized state */
+}
+
+.custom-link {
+    color: #ff5722; /* Choose your desired color */
+    text-decoration: none; /* Remove the underline */
+}
+
+.custom-link:hover {
+    color: #e64a19; /* Optional: Change color on hover */
+    text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background-color: rgba(42, 42, 58, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+#start-menu-button {
+    background-color: #3a3a4a;
+    position:relative;
+    z-index:1000;
+    vertical-align: middle;
+    border-radius: 5px;
+    display:flex;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    width: 44px; /* Adjust as per your design */
+    height: 44px; /* Adjust as per your design */
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-menu-button:hover {
+    background-color: #4a4a5a;
+}
+
+#search-bar {
+    display:flex;
+    align-items: center;
+    background-color: #3a3a4a;
+    border-radius: 15px;
+    padding: 5px 10px;
+    margin: 0 10px;
+}
+
+#search-bar input {
+    background: none;
+    border: none;
+    color: #ffffff;
+    outline: none;
+    width: 200px;
+}
+
+#search-bar i {
+    color: #ffffff;
+    margin-left: 5px;
+}
+
+#taskbar-icons {
+    display: flex;
+}
+
+.taskbar-item {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskbar-item:hover {
+    background-color: #4a4a5a;
+}
+
+.taskbar-item:hover, .taskbar-item.active {
+    background-color: rgba(58, 58, 80, 0.8);
+}
+
+.taskbar-item i {
+    font-size: 16px;
+}
+
+#system-tray {
+    display: flex;
+    align-items: center;
+}
+
+#system-tray > * {
+    margin-left: 10px;
+}
+
+#clock {
+    font-size: 14px;
+}
+
+#start-menu {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 300px;
+    background-color: rgba(42, 42, 58, 0.95);
+    border-top-right-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#start-menu.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#start-menu-search {
+    margin-bottom: 10px;
+}
+
+#start-menu-search input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    background-color: #3a3a4a;
+    color: #ffffff;
+}
+
+#search-bar button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+#search-bar button:hover {
+    color: #ff5555;
+}
+
+#start-menu-apps {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#start-menu-power {
+    display: flex;
+    justify-content: space-between;
+}
+
+#start-menu-power button {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-menu-power button:hover {
+    background-color: #4a4a5a;
+}
+
+#calendar-widget {
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    width: 300px;
+    background-color: rgba(42, 42, 58, 0.95);
+    border-top-left-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#calendar-widget.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#calendar-header button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#calendar-table th,
+#calendar-table td {
+    text-align: center;
+    padding: 5px;
+}
+
+#calendar-table td {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#calendar-table td:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Terminal Styles */
+#terminal-input {
+    display: flex;
+    align-items: center;
+    background-color: #3a3a4a;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+#terminal-input .prompt {
+    padding: 5px 10px;
+    color: #ff5555;
+    font-weight: bold;
+}
+
+#terminal-input input {
+    background: none;
+    border: none;
+    color: #ffffff;
+    outline: none;
+    flex: 1;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#terminal-input input:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Settings Styles */
+#settings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#settings .setting {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.setting {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#settings .setting label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.setting label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#settings .setting select,
+#settings .setting input[type="range"] {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.setting select,
+.setting input[type="range"] {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+#settings .setting select:focus,
+#settings .setting input[type="range"]:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.setting select:focus,
+.setting input[type="range"]:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#settings .save-settings {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+    align-self: flex-end;
+}
+
+.save-settings {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+    align-self: flex-end;
+}
+
+#settings .save-settings:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.save-settings:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+#settings .save-settings:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+}
+
+.save-settings:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+}
+
+#settings .save-settings:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.save-settings:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+/* Reset Settings Button Styles */
+.reset-settings {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+    align-self: flex-end;
+}
+
+.reset-settings:hover {
+    background-color: #d32f2f;
+    transform: translateY(-1px);
+}
+
+.reset-settings:active {
+    background-color: #c62828;
+    transform: translateY(0);
+}
+
+.reset-settings:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.calculator-grid button {
+    padding: 10px;
+    font-size: 18px;
+    background-color: #3a3a4a;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.calculator-grid button:hover {
+    background-color: #4a4a5a;
+}
+
+.calculator-grid button:active {
+    background-color: #5a5a6a;
+}
+
+.calculator-grid button:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.text-editor {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.text-editor textarea {
+    width: 100%;
+    height: 100%;
+    background-color: #2a2a3a;
+    color: #ffffff;
+    border: none;
+    resize: none;
+    padding: 20px;
+    font-size: 16px; /* Increased font size */
+    line-height: 2;
+    outline: none;
+}
+
+#text-editor-content {
+    width: 100%;
+    height: calc(100% - 20px); /* Subtract padding */
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    outline: none;
+}
+#text-editor-content::before {
+    content: attr(placeholder);
+    float: left;
+    color: #999;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+#text-editor-content:focus::before,
+#text-editor-content:not(:empty)::before {
+    opacity: 0;
+}
+
+/* Text Editor Styles */
+.text-editor button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.text-editor button:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.text-editor button:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+}
+
+.text-editor button:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.music-player audio {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.music-player #playlist ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.music-player #playlist li {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.music-player #playlist li:hover {
+    background-color: #4a4a5a;
+    transform: translateY(-1px);
+}
+
+.music-player #playlist li:active {
+    background-color: #5a5a6a;
+    transform: translateY(0);
+}
+
+.music-player #playlist li:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+.social-icons a {
+    margin-right: 10px;
+    text-decoration: none;
+}
+.social-icons img {
+    transition: transform 0.2s;
+}
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+.file-explorer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.file-explorer-item {.file-explorer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.file-explorer-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.file-explorer-item i {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+/* File Explorer Header Button Styles */
+.file-explorer-header button {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+}
+
+.file-explorer-header button:hover {
+    background-color: #4a4a5a;
+    transform: translateY(-1px);
+}
+
+.file-explorer-header button:active {
+    background-color: #5a5a6a;
+    transform: translateY(0);
+}
+
+.file-explorer-header button:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.image-viewer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.video-player video {
+    width: 100%;
+    height: 100%;
+}
+
+/* Gallery Styles */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: minmax(200px, auto);
+    gap: 10px;
+    height: 100%;
+}
+
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.gallery-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.gallery-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item .caption {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* Achievements Styles */
+.achievement {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #3a3a4a;
+    border-radius: 5px;
+    background-color: #2a2a3a;
+    transition: background-color 0.3s ease;
+}
+
+.achievement:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.achievement img {
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.achievement h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.achievement p {
+    margin: 0;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* Specific Button Styles */
+.window-controls button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+.window-controls button:hover {
+    color: #ff5555;
+}
+
+.taskbar-item {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskbar-item:hover, .taskbar-item.active {
+    background-color: rgba(58, 58, 80, 0.8);
+}
+
+.taskbar-item i {
+    font-size: 16px;
+}
+
+#start-menu-button {
+    background-color: #3a3a4a;
+    position: relative;
+    z-index: 1000;
+    vertical-align: middle;
+    border-radius: 5px;
+    display: flex;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    width: 44px; /* Adjust as per your design */
+    height: 44px; /* Adjust as per your design */
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-menu-button:hover {
+    background-color: #4a4a5a;
+}
+
+#search-bar button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+#search-bar button:hover {
+    color: #ff5555;
+}
+
+.save-settings {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+}
+
+.save-settings:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.save-settings:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+}
+
+.save-settings:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.file-explorer-header button {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+}
+
+.file-explorer-header button:hover {
+    background-color: #4a4a5a;
+    transform: translateY(-1px);
+}
+
+.file-explorer-header button:active {
+    background-color: #5a5a6a;
+    transform: translateY(0);
+}
+
+.file-explorer-header button:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.social-icons a {
+    margin-right: 10px;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.social-icons img {
+    transition: transform 0.2s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    #icons {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+        top: auto;
+        bottom: 50px;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .icon {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .icon i {
+        font-size: 24px;
+    }
+
+    .icon span {
+        font-size: 10px;
+    }
+
+    .window {
+        width: 90vw !important;
+        height: 80vh !important;
+        left: 5vw !important;
+        top: 10vh !important;
+    }
+
+    #search-bar {
+        display: none;
+    }
+
+    #start-menu,
+    #calendar-widget {
+        width: 100%;
+    }
+}
+
+/* Button Styles */
+button {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #4a4a5a;
+    transform: translateY(-1px);
+}
+
+button:active {
+    background-color: #5a5a6a;
+    transform: translateY(0);
+}
+
+button:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+/* Specific Button Styles */
+.window-controls button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+.window-controls button:hover {
+    color: #ff5555;
+}
+
+.taskbar-item {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskbar-item:hover, .taskbar-item.active {
+    background-color: rgba(58, 58, 80, 0.8);
+}
+
+.taskbar-item i {
+    font-size: 16px;
+}
+
+#start-menu-button {
+    background-color: #3a3a4a;
+    position: relative;
+    z-index: 1000;
+    vertical-align: middle;
+    border-radius: 5px;
+    display: flex;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    width: 44px; /* Adjust as per your design */
+    height: 44px; /* Adjust as per your design */
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-menu-button:hover {
+    background-color: #4a4a5a;
+}
+
+#search-bar button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+#search-bar button:hover {
+    color: #ff5555;
+}
+
+.save-settings {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+}
+
+.save-settings:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+.save-settings:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+}
+
+.save-settings:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.file-explorer-header button {
+    background-color: #3a3a4a;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 14px;
+}
+
+.file-explorer-header button:hover {
+    background-color: #4a4a5a;
+    transform: translateY(-1px);
+}
+
+.file-explorer-header button:active {
+    background-color: #5a5a6a;
+    transform: translateY(0);
+}
+
+.file-explorer-header button:focus {
+    outline: 2px solid #ff5555;
+    outline-offset: 2px;
+}
+
+.social-icons a {
+    margin-right: 10px;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.social-icons img {
+    transition: transform 0.2s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
